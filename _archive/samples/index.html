@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Design Samples · vivekadithya.com</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=VT323&family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+  :root{ --ink:#141312; --bg:#FFF7E6; }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg); color:var(--ink); font-family:'Space Grotesk',sans-serif;}
+  body::before{content:''; position:fixed; inset:0; pointer-events:none;
+    background:repeating-conic-gradient(rgba(20,19,18,.045) 0% 25%, transparent 0% 50%); background-size:46px 46px;}
+  main{position:relative; z-index:1; max-width:980px; margin:0 auto; padding:3.4rem 1.5rem 5rem;}
+  .kicker{display:inline-block; font-family:'VT323',monospace; font-size:1.25rem; letter-spacing:.12em;
+    background:#fff; border:3px solid var(--ink); border-radius:999px; padding:.15rem .9rem;
+    box-shadow:4px 4px 0 var(--ink); rotate:-2deg; margin-bottom:1.2rem;}
+  h1{font-size:clamp(2.4rem,6vw,4.2rem); line-height:1; letter-spacing:-.02em;
+    text-shadow:4px 4px 0 rgba(20,19,18,.9); -webkit-text-stroke:1.5px var(--ink);}
+  h1 span{display:inline-block;}
+  h1 .a{color:#FF6B6B;} h1 .b{color:#FFD93D;} h1 .c{color:#6BCB77;}
+  h1 .d{color:#4D96FF;} h1 .e{color:#FF9F45;} h1 .f{color:#C084FC;}
+  .lede{font-family:'VT323',monospace; font-size:1.35rem; margin:1.2rem 0 2.6rem; max-width:640px; line-height:1.4;}
+  .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:2rem;}
+  .card{border:3px solid var(--ink); border-radius:20px; background:#fff; overflow:hidden;
+    box-shadow:8px 8px 0 var(--ink); text-decoration:none; color:var(--ink);
+    display:flex; flex-direction:column; transition:translate .12s, box-shadow .12s;}
+  .card:hover{translate:-3px -3px; box-shadow:11px 11px 0 var(--ink);}
+  .thumb{height:120px; border-bottom:3px solid var(--ink); display:flex; align-items:flex-end; gap:6px; padding:12px;}
+  .thumb i{flex:1; border:2.5px solid var(--ink); border-radius:8px; display:block;}
+  .t-a{background:#FFF3D6;} .t-a i{background:var(--sc); }
+  .t-b{background:#0B0C12;} .t-b i{background:var(--sc); border-color:#2A2F45;}
+  .t-c{background:linear-gradient(160deg,#B98A5B,#96632F);} .t-c i{background:var(--sc); border-color:#3d2c14;}
+  .body{padding:1.2rem 1.3rem 1.4rem; display:flex; flex-direction:column; flex:1;}
+  .body h2{font-size:1.45rem; line-height:1.1;}
+  .body .tag{font-family:'VT323',monospace; font-size:1.1rem; letter-spacing:.1em; color:#6b6357; margin:.25rem 0 .8rem;}
+  .body ul{list-style:none; display:flex; flex-direction:column; gap:.45rem; font-size:.95rem; flex:1;}
+  .body li::before{content:'✦ '; }
+  .open{margin-top:1.1rem; font-family:'VT323',monospace; font-size:1.25rem; letter-spacing:.08em;
+    background:var(--ink); color:var(--bg); border-radius:10px; padding:.35rem .9rem; align-self:flex-start;}
+  .verdict{margin-top:3.4rem; border:3px dashed var(--ink); border-radius:16px; padding:1.4rem 1.6rem;
+    background:rgba(255,255,255,.7); font-family:'VT323',monospace; font-size:1.25rem; line-height:1.5;}
+  .verdict b{background:#FFD93D; padding:0 .3rem; border:2px solid var(--ink); border-radius:6px;}
+  footer{padding:2rem; text-align:center; font-family:'VT323',monospace; font-size:1.15rem; color:#6b6357;
+    border-top:3px solid var(--ink); position:relative; z-index:1;}
+</style>
+</head>
+<body>
+<main>
+  <span class="kicker">✦ WEB DESIGN CONSULTATION · LIVE PROTOTYPES ✦</span>
+  <h1><span class="a">D</span><span class="b">E</span><span class="c">S</span><span class="d">I</span><span class="e">G</span><span class="f">N</span> <span class="b">S</span><span class="a">A</span><span class="d">M</span><span class="c">P</span><span class="f">L</span><span class="e">E</span><span class="a">S</span></h1>
+  <p class="lede">three directions for vivekadithya.com — "a playable business card."
+    every sample is a single dependency-free HTML file. click around; nothing here is static.
+    best experienced with sound-optional patience and a mouse.</p>
+
+  <div class="grid">
+    <a class="card" href="sample-a-cream.html">
+      <div class="thumb t-a">
+        <i style="--sc:#FF6B6B"></i><i style="--sc:#FFD93D"></i><i style="--sc:#6BCB77"></i><i style="--sc:#4D96FF"></i><i style="--sc:#C084FC"></i>
+      </div>
+      <div class="body">
+        <h2>Sample A — Banana Cream Chaos</h2>
+        <div class="tag">LIGHT · MEMPHIS · STICKER BOOK</div>
+        <ul>
+          <li>the full <b>dice-roll system</b> — palette, pattern &amp; greeting re-roll per visit, seeded &amp; shareable via ?roll=</li>
+          <li>flippable trading cards, level-select journey map, chaos dial (0–11)</li>
+          <li>click the hero to splat wet paint</li>
+        </ul>
+        <span class="open">ROLL IN →</span>
+      </div>
+    </a>
+
+    <a class="card" href="sample-b-arcade.html">
+      <div class="thumb t-b">
+        <i style="--sc:#00F5D4"></i><i style="--sc:#F15BB5"></i><i style="--sc:#FEE440"></i><i style="--sc:#00BBF9"></i><i style="--sc:#9B5DE5"></i>
+      </div>
+      <div class="body">
+        <h2>Sample B — Midnight Arcade</h2>
+        <div class="tag">DARK · CRT · PAINT/OS</div>
+        <ul>
+          <li>boot sequence, scanlines, terminal that types — the same content, opposite mood</li>
+          <li>TV <b>channel switcher</b> instead of a dice roll, insert-coin credits with bleeps</li>
+          <li>konami code does a thing. try ↑↑↓↓←→←→BA</li>
+        </ul>
+        <span class="open">POWER ON →</span>
+      </div>
+    </a>
+
+    <a class="card" href="sample-c-toybox.html">
+      <div class="thumb t-c">
+        <i style="--sc:#FF6B6B"></i><i style="--sc:#FFD93D"></i><i style="--sc:#4D96FF"></i><i style="--sc:#C084FC"></i><i style="--sc:#FF9F45"></i>
+      </div>
+      <div class="body">
+        <h2>Sample C — The Toybox</h2>
+        <div class="tag">COMPONENT PLAYGROUND</div>
+        <ul>
+          <li>the "many small delights" architecture, isolated: sticker pile with real physics — drag &amp; <b>fling</b></li>
+          <li>guestbook corkboard (persists in your browser), confetti cannon, poppable bubble wrap</li>
+          <li>this is what ships piece-by-piece without a game engine</li>
+        </ul>
+        <span class="open">PLAY →</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="verdict">
+    consultant's take: <b>A is the recommended base</b> — the roll system is the memorable hook and it
+    photographs well on a résumé. steal B's boot sequence + konami as easter eggs, and grow the site
+    with C's toys one weekend at a time. a dark mode can literally be "roll #6".
+  </div>
+</main>
+<footer>static prototypes · no build step · production would be React + Vite components</footer>
+</body>
+</html>

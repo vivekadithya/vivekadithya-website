@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<meta name="description" content="Vivek Adithya — QA automation engineer. Eight years of evaluating speech-AI before it ships. A playable business card.">
+<meta property="og:title" content="Vivek Adithya — QA Automation Engineer">
+<meta property="og:description" content="eight years of evaluating speech-AI before it ships. roll the dice — every visit is a new theme.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#FFF7E6">
+<title>Vivek Adithya — QA Automation Engineer</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='4' y='4' width='56' height='56' rx='14' fill='%23FFD93D' stroke='%23141312' stroke-width='5'/%3E%3Ctext x='32' y='45' font-family='monospace' font-size='36' font-weight='bold' text-anchor='middle' fill='%23141312'%3EV%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=VT323&family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FFF7E6; --ink:#141312;
+    --c1:#FF6B6B; --c2:#FFD93D; --c3:#6BCB77; --c4:#4D96FF; --c5:#FF9F45; --c6:#C084FC;
+    --cm:1;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background-color:var(--bg); color:var(--ink);
+    font-family:'Space Grotesk',sans-serif;
+    overflow-x:hidden; position:relative;
+  }
+  body::before{content:''; position:fixed; inset:0; pointer-events:none; z-index:0;}
+  body[data-pattern="checkers"]::before{background:repeating-conic-gradient(rgba(20,19,18,.05) 0% 25%, transparent 0% 50%); background-size:44px 44px;}
+  body[data-pattern="dots"]::before{background-image:radial-gradient(rgba(20,19,18,.09) 2.2px, transparent 2.3px); background-size:26px 26px;}
+  body[data-pattern="stripes"]::before{background:repeating-linear-gradient(45deg, rgba(20,19,18,.05) 0 12px, transparent 12px 26px);}
+  body[data-pattern="grid"]::before{background-image:linear-gradient(rgba(20,19,18,.06) 1.5px, transparent 1.5px),linear-gradient(90deg, rgba(20,19,18,.06) 1.5px, transparent 1.5px); background-size:36px 36px;}
+
+  main, .topbar{position:relative; z-index:1;}
+
+  .topbar{
+    display:flex; align-items:center; gap:1rem; flex-wrap:wrap;
+    padding:.6rem 1.2rem; border-bottom:3px solid var(--ink); background:var(--c3);
+    font-family:'VT323',monospace; font-size:1.15rem; letter-spacing:.05em;
+  }
+  .topbar .spacer{flex:1;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative; overflow:hidden;
+    display:grid; grid-template-columns:1.25fr .75fr; gap:2rem; align-items:center;
+    max-width:1100px; margin:0 auto; padding:4.5rem 1.5rem 3rem;
+  }
+  .kicker{
+    display:inline-block; font-family:'VT323',monospace; font-size:1.25rem; letter-spacing:.12em;
+    background:#fff; border:3px solid var(--ink); border-radius:999px; padding:.15rem .9rem;
+    box-shadow:4px 4px 0 var(--ink); rotate:-2deg; margin-bottom:1.1rem;
+  }
+  h1{
+    font-weight:700; line-height:.92; letter-spacing:-.02em;
+    font-size:clamp(3.2rem, 10vw, 7rem);
+    -webkit-text-stroke:2px var(--ink);
+    text-shadow:5px 5px 0 var(--ink);
+  }
+  h1 .hl{display:inline-block; animation:bob calc(2.6s / var(--cm)) ease-in-out infinite;}
+  h1 .hl:hover{translate:0 -8px; rotate:5deg; transition:translate .12s, rotate .12s;}
+  @keyframes bob{0%,100%{transform:translateY(0) rotate(-1.2deg)}50%{transform:translateY(-7px) rotate(1.2deg)}}
+
+  .sub{font-family:'VT323',monospace; font-size:1.5rem; margin-top:1.2rem; line-height:1.25;}
+  .sub .greet{background:var(--c2); padding:0 .35rem; border:2px solid var(--ink); border-radius:6px; display:inline-block; rotate:-1deg;}
+  .btnrow{display:flex; gap:1rem; flex-wrap:wrap; margin-top:1.6rem;}
+  .btn{
+    font-family:'VT323',monospace; font-size:1.35rem; letter-spacing:.06em;
+    border:3px solid var(--ink); border-radius:14px; padding:.55rem 1.3rem;
+    box-shadow:5px 5px 0 var(--ink); cursor:pointer; color:var(--ink);
+    transition:translate .1s, box-shadow .1s;
+  }
+  .btn:hover{translate:-2px -2px; box-shadow:7px 7px 0 var(--ink);}
+  .btn:active{translate:3px 3px; box-shadow:2px 2px 0 var(--ink);}
+  .btn.primary{background:var(--c1);}
+  .btn.secondary{background:#fff;}
+  .rollchip{
+    margin-top:1.3rem; display:inline-block; font-family:'VT323',monospace; font-size:1.1rem;
+    border:2.5px dashed var(--ink); border-radius:10px; padding:.25rem .8rem; background:rgba(255,255,255,.7);
+    text-transform:uppercase; letter-spacing:.08em;
+  }
+
+  .heroart{position:relative; height:340px;}
+  .heroart canvas{
+    position:absolute; left:50%; top:50%; translate:-50% -50%;
+    width:168px; height:auto; image-rendering:pixelated;
+    animation:bob calc(2.2s / var(--cm)) ease-in-out infinite;
+    filter:drop-shadow(6px 6px 0 rgba(20,19,18,.9));
+  }
+  .shape{position:absolute; animation:float calc(5s / var(--cm)) ease-in-out infinite;}
+  .star{width:64px; height:64px; background:var(--c2); border:3px solid var(--ink);
+    clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);}
+  .ring{width:54px; height:54px; border-radius:50%; border:9px solid var(--c4); border-right-color:var(--c1);}
+  .squig{width:74px; height:22px;}
+  .badge{
+    position:absolute; right:0; top:8%; rotate:8deg;
+    font-family:'Press Start 2P',monospace; font-size:.55rem; line-height:1.6;
+    background:var(--c5); border:3px solid var(--ink); border-radius:12px; padding:.55rem .7rem;
+    box-shadow:4px 4px 0 var(--ink); text-align:center;
+    animation:wobble calc(3.4s / var(--cm)) ease-in-out infinite;
+  }
+  @keyframes wobble{0%,100%{rotate:8deg}50%{rotate:2deg}}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+
+  .splat{position:absolute; border-radius:60% 40% 55% 45% / 50% 60% 40% 50%; pointer-events:none; animation:splatin .25s cubic-bezier(.2,1.6,.4,1);}
+  .splat i{position:absolute; top:70%; width:8px; border-radius:0 0 8px 8px; background:inherit; animation:drip 2.4s ease-out forwards;}
+  @keyframes splatin{from{scale:0}to{scale:1}}
+  @keyframes drip{from{height:0}to{height:70px}}
+
+  /* ---------- TAPE ---------- */
+  .tape{
+    overflow:hidden; background:var(--ink); transform:rotate(-1.1deg) scale(1.02);
+    border-block:3px solid var(--ink);
+  }
+  .tape-inner{
+    display:inline-flex; white-space:nowrap; width:max-content;
+    animation:tape calc(20s / var(--cm)) linear infinite;
+    font-family:'VT323',monospace; font-size:1.35rem; letter-spacing:.1em; color:var(--bg);
+    padding:.55rem 0;
+  }
+  .tape-inner span{padding-right:3rem;}
+  @keyframes tape{to{transform:translateX(-50%)}}
+
+  /* ---------- SECTIONS ---------- */
+  section{max-width:1100px; margin:0 auto; padding:4rem 1.5rem;}
+  .seclabel{
+    display:inline-block; font-family:'VT323',monospace; font-size:1.4rem; letter-spacing:.14em;
+    background:var(--c1); color:#fff; border:3px solid var(--ink); border-radius:12px;
+    padding:.2rem 1rem; box-shadow:5px 5px 0 var(--ink); rotate:-1.5deg; margin-bottom:2rem;
+    text-transform:uppercase;
+  }
+  .seclabel.alt{background:var(--c4);}
+
+  .nowcard{
+    background:#FFFDF6; border:3px solid var(--ink); border-radius:4px; max-width:640px;
+    padding:2rem 1.8rem 1.6rem; box-shadow:8px 8px 0 var(--ink); rotate:-1.4deg;
+    font-size:1.15rem; line-height:1.55; position:relative;
+  }
+  .nowcard::before{
+    content:''; position:absolute; top:-14px; left:50%; translate:-50% 0; width:110px; height:26px;
+    background:rgba(255,255,255,.55); border:1px solid rgba(20,19,18,.15);
+  }
+
+  .cards{display:grid; grid-template-columns:repeat(3,1fr); gap:2.2rem; perspective:1000px;}
+  .card{aspect-ratio:3/4.1; cursor:pointer; position:relative;}
+  .card-inner{
+    position:absolute; inset:0; transform-style:preserve-3d;
+    transition:transform .55s cubic-bezier(.25,.8,.3,1.15);
+  }
+  .card:not(.go):hover .card-inner{transform:rotate3d(1,-4,0,9deg);}
+  .card.go .card-inner{transform:rotateY(180deg);}
+  .card:focus-visible{outline:3px dashed var(--ink); outline-offset:4px; border-radius:18px;}
+  .card:active{scale:.97;}
+  .face{
+    position:absolute; inset:0; backface-visibility:hidden;
+    border:3px solid var(--ink); border-radius:18px; box-shadow:7px 7px 0 var(--ink);
+    background:#fff; padding:1.1rem; display:flex; flex-direction:column;
+  }
+  .face.back{transform:rotateY(180deg); background:var(--c6);}
+  .face .num{font-family:'Press Start 2P',monospace; font-size:.7rem; opacity:.75;}
+  .face .name{font-weight:700; font-size:1.7rem; line-height:1.05; margin-top:.6rem;}
+  .face .tag{font-family:'VT323',monospace; font-size:1.15rem; margin-top:.3rem; letter-spacing:.06em;}
+  .face .doodle{flex:1; display:grid; place-items:center;}
+  .doodle .dstar{width:74px; height:74px; background:var(--c2); border:3px solid var(--ink);
+    clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);}
+  .doodle .dring{width:70px; height:70px; border-radius:50%; border:12px solid var(--c4);}
+  .doodle .dbar{width:70px; height:70px; border:3px solid var(--ink); border-radius:14px;
+    background:repeating-linear-gradient(45deg, var(--c3) 0 10px, #fff 10px 20px);}
+  .flipcue{
+    align-self:flex-start; font-family:'VT323',monospace; font-size:1rem;
+    background:var(--ink); color:var(--bg); border-radius:8px; padding:.1rem .6rem;
+  }
+  .face.back p{font-size:.98rem; line-height:1.45; margin-top:.6rem;}
+  .chips{display:flex; flex-wrap:wrap; gap:.45rem; margin-top:auto;}
+  .chips b{
+    font-family:'VT323',monospace; font-weight:400; font-size:1rem; letter-spacing:.05em;
+    border:2px solid var(--ink); border-radius:999px; padding:.05rem .6rem; background:#fff;
+  }
+  .barcode{margin-top:.8rem; height:26px; border-radius:4px;
+    background:repeating-linear-gradient(90deg, var(--ink) 0 2px, transparent 2px 5px, var(--ink) 5px 9px, transparent 9px 12px);}
+
+  /* ---------- JOURNEY MAP ---------- */
+  .mapwrap{border:3px solid var(--ink); border-radius:22px; background:rgba(255,255,255,.65);
+    box-shadow:8px 8px 0 var(--ink); padding:1.2rem;}
+  .mapfoot{font-family:'VT323',monospace; font-size:1.15rem; margin-top:.6rem; color:#4c463d;}
+
+  /* ---------- QUEST LOG ---------- */
+  .questlog{display:flex; flex-direction:column; gap:1.1rem; margin-top:2rem;}
+  .qentry{
+    display:flex; gap:1.1rem; align-items:flex-start; flex-wrap:wrap;
+    border:3px solid var(--ink); border-radius:14px; background:rgba(255,255,255,.75);
+    box-shadow:5px 5px 0 var(--ink); padding:.95rem 1.15rem;
+  }
+  .qentry:nth-child(odd){rotate:-.6deg;}
+  .qentry:nth-child(even){rotate:.6deg;}
+  .qyear{
+    font-family:'Press Start 2P',monospace; font-size:.62rem; white-space:nowrap;
+    background:var(--c1); color:#fff; border:2.5px solid var(--ink); border-radius:10px;
+    padding:.55rem .45rem; min-width:86px; text-align:center; box-shadow:3px 3px 0 var(--ink);
+  }
+  .qentry p{font-family:'VT323',monospace; font-size:1.3rem; line-height:1.28; flex:1; min-width:220px;}
+  .qentry p b{letter-spacing:.03em;}
+  svg.journey{width:100%; height:auto; display:block; overflow:visible;}
+  .journey .trail{stroke:var(--ink); stroke-width:6; stroke-linecap:round; fill:none;}
+  .stop circle.dot{stroke:var(--ink); stroke-width:3.5; transform-box:fill-box; transform-origin:center;}
+  .stop{cursor:pointer;}
+  .stop circle.dot{transition:scale .15s;}
+  .stop:hover circle.dot{scale:1.35;}
+  .stop text{
+    font-family:'VT323',monospace; font-size:21px; fill:var(--ink); letter-spacing:.06em;
+    paint-order:stroke; stroke:#fff; stroke-width:9px; stroke-linejoin:round;
+  }
+  .stop .pulse{fill:none; stroke:var(--ink); stroke-width:2; opacity:0; transform-box:fill-box; transform-origin:center;
+    animation:pulse calc(2.8s / var(--cm)) ease-out infinite;}
+  @keyframes pulse{0%{scale:.5; opacity:.8}70%{scale:2.2; opacity:0}100%{opacity:0}}
+
+  /* ---------- STAT SHEET ---------- */
+  .stats{display:grid; grid-template-columns:repeat(4,1fr); gap:1.6rem;}
+  .stat{
+    border:3px solid var(--ink); border-radius:18px; background:#fff; box-shadow:6px 6px 0 var(--ink);
+    padding:1.4rem .9rem 1.1rem; text-align:center; transition:translate .12s, box-shadow .12s;
+  }
+  .stat:nth-child(odd){rotate:-1.2deg;}
+  .stat:nth-child(even){rotate:1.2deg;}
+  .stat:hover{translate:-2px -2px; box-shadow:8px 8px 0 var(--ink);}
+  .stat .n{font-family:'Press Start 2P',monospace; font-size:clamp(.85rem,1.8vw,1.25rem);
+    display:inline-block; padding:.45rem .5rem .55rem; border-radius:10px; border:2.5px solid var(--ink);}
+  .stat .l{display:block; font-family:'VT323',monospace; font-size:1.15rem; line-height:1.25; margin-top:.6rem; letter-spacing:.04em;}
+
+  /* ---------- LOADOUT ---------- */
+  .loadout{display:flex; flex-direction:column; gap:1.5rem;}
+  .loadgroup h3{
+    font-family:'VT323',monospace; font-size:1.3rem; letter-spacing:.14em; margin-bottom:.6rem;
+    text-transform:uppercase; display:inline-block; background:var(--c6); border:2.5px solid var(--ink);
+    border-radius:10px; padding:.05rem .7rem; box-shadow:3px 3px 0 var(--ink);
+  }
+  .skillrow{display:flex; flex-wrap:wrap; gap:.7rem;}
+  .skill{
+    font-family:'VT323',monospace; font-size:1.2rem; letter-spacing:.05em; cursor:default;
+    border:2.5px solid var(--ink); border-radius:999px; padding:.18rem .95rem;
+    background:#fff; box-shadow:3px 3px 0 var(--ink);
+    transition:translate .1s, box-shadow .1s, background .12s, rotate .15s;
+  }
+  .skill:nth-child(3n){rotate:1.6deg;}
+  .skill:nth-child(3n+1){rotate:-1.6deg;}
+  .skill:hover{translate:-2px -3px; rotate:0deg; box-shadow:5px 5px 0 var(--ink); background:var(--c2);}
+
+  /* ---------- CONTACT ---------- */
+  .contactcard{
+    border:3px solid var(--ink); border-radius:22px; background:rgba(255,255,255,.75);
+    box-shadow:8px 8px 0 var(--ink); padding:2.6rem 2rem; text-align:center; rotate:-.5deg;
+  }
+  .pitch{font-size:clamp(1.5rem,3.4vw,2.3rem); line-height:1.15; letter-spacing:-.01em;}
+  .pitchsub{font-family:'VT323',monospace; font-size:1.3rem; color:#4c463d; margin-top:.7rem;}
+  .emailrow{display:flex; gap:1rem; justify-content:center; align-items:center; flex-wrap:wrap; margin-top:2rem;}
+  .emailbtn{
+    font-family:'VT323',monospace; font-size:clamp(1.3rem,3vw,1.8rem); letter-spacing:.04em;
+    background:var(--c2); color:var(--ink); text-decoration:none;
+    border:3px solid var(--ink); border-radius:16px; padding:.7rem 1.6rem;
+    box-shadow:6px 6px 0 var(--ink); transition:translate .1s, box-shadow .1s;
+  }
+  .emailbtn:hover{translate:-2px -2px; box-shadow:8px 8px 0 var(--ink);}
+  .emailbtn:active{translate:3px 3px; box-shadow:2px 2px 0 var(--ink);}
+  .socialrow{display:flex; gap:.9rem; justify-content:center; margin-top:1.6rem; flex-wrap:wrap;}
+  .socialrow .skill{text-decoration:none; color:var(--ink);}
+  .responsetime{font-family:'VT323',monospace; font-size:1.15rem; margin-top:1.8rem; color:#4c463d;}
+  .toast{
+    position:fixed; left:50%; bottom:26px; translate:-50% 0; z-index:1000;
+    background:var(--ink); color:var(--bg); font-family:'VT323',monospace; font-size:1.3rem;
+    border-radius:14px; padding:.5rem 1.3rem; box-shadow:5px 5px 0 rgba(20,19,18,.3);
+    animation:toastin 1.9s ease forwards; pointer-events:none;
+  }
+  @keyframes toastin{
+    0%{opacity:0; translate:-50% 14px}
+    12%{opacity:1; translate:-50% 0}
+    82%{opacity:1}
+    100%{opacity:0; translate:-50% -8px}
+  }
+
+  /* ---------- FOOTER / CHAOS ---------- */
+  footer{
+    border-top:3px solid var(--ink); background:var(--c2);
+  }
+  .footinner{max-width:1100px; margin:0 auto; padding:3rem 1.5rem 4rem;
+    display:flex; flex-wrap:wrap; gap:2.5rem; align-items:center;}
+  .dialbox{flex:1; min-width:280px;}
+  .dialbox label{font-family:'VT323',monospace; font-size:1.4rem; letter-spacing:.1em;}
+  .dialrow{display:flex; align-items:center; gap:1rem; margin-top:.5rem;}
+  input[type=range]{flex:1; accent-color:var(--c1); height:34px; cursor:pointer;}
+  .dialval{font-family:'Press Start 2P',monospace; font-size:.8rem; background:var(--ink); color:var(--c2);
+    border-radius:10px; padding:.5rem .7rem; min-width:64px; text-align:center;}
+  .footnote{font-family:'VT323',monospace; font-size:1.2rem; line-height:1.5; max-width:380px;}
+  .tinyhint{opacity:.75; font-size:1rem;}
+
+  .cf{position:fixed; z-index:999; pointer-events:none; border-radius:2px;
+    width:var(--s); height:calc(var(--s)*.55); background:var(--cc);
+    animation:cfall var(--d) cubic-bezier(.15,.55,.45,1) forwards;}
+  @keyframes cfall{from{transform:translate(0,0) rotate(0)}to{transform:translate(var(--dx),var(--dy)) rotate(var(--rr)); opacity:0}}
+
+  .bcf{position:fixed; top:-18px; z-index:998; pointer-events:none; border-radius:2px;
+    width:var(--s); height:calc(var(--s)*.55); background:var(--cc);
+    animation:bcfall var(--d) linear forwards;}
+  @keyframes bcfall{
+    0%{transform:translate(0,-10px) rotate(0)}
+    50%{transform:translate(calc(var(--dx)*.55), 52vh) rotate(calc(var(--rr)*.5))}
+    100%{transform:translate(var(--dx), 106vh) rotate(var(--rr))}
+  }
+
+  body[data-chaos="0"] .hl, body[data-chaos="0"] .heroart canvas, body[data-chaos="0"] .badge,
+  body[data-chaos="0"] .tape-inner, body[data-chaos="0"] .stop .pulse{animation-play-state:paused;}
+
+  @media (max-width:820px){
+    .hero{grid-template-columns:1fr; padding-top:3rem;}
+    .heroart{height:260px;}
+    .cards{grid-template-columns:1fr 1fr; gap:1.4rem;}
+    .card{aspect-ratio:3/4;}
+    .stats{grid-template-columns:repeat(2,1fr);}
+  }
+  @media (max-width:540px){
+    .cards{grid-template-columns:1fr; }
+    .face .name{font-size:1.5rem;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{animation-duration:.001s !important; animation-iteration-count:1 !important; transition-duration:.001s !important;}
+  }
+</style>
+</head>
+<body data-pattern="dots" data-chaos="5">
+
+<div class="topbar">
+  <span>★ vivekadithya.com</span>
+  <span class="spacer"></span>
+  <span>a playable business card · est. 2017</span>
+</div>
+
+<main>
+  <div class="hero" id="hero">
+    <div>
+      <span class="kicker">✦ QA AUTOMATION ENGINEER · SPEECH AI · EST. 2017 ✦</span>
+      <h1 id="bigname" aria-label="Vivek Adithya"></h1>
+      <p class="sub">eight years of evaluating speech-AI before it ships.<br>
+        <span class="greet" id="greet">rolling the dice…</span></p>
+      <div class="btnrow">
+        <button class="btn primary" id="rollbtn">🎲 ROLL AGAIN</button>
+        <button class="btn secondary" id="paintbtn">THE PAINT IS STILL WET</button>
+      </div>
+      <div class="rollchip" id="rollchip">…</div>
+    </div>
+    <div class="heroart" aria-hidden="true">
+      <div class="shape star" style="left:2%; top:6%; animation-delay:-1s;"></div>
+      <div class="shape ring" style="right:8%; bottom:10%; animation-delay:-2.4s;"></div>
+      <svg class="shape squig" style="left:8%; bottom:4%; animation-delay:-3s;" viewBox="0 0 74 22"><path d="M2 11 Q10.5 1 19 11 T36 11 T53 11 T70 11" fill="none" stroke="var(--ink)" stroke-width="5" stroke-linecap="round"/></svg>
+      <div class="badge">EST.<br>STILL<br>COOKING</div>
+      <canvas id="sprite" width="24" height="31"></canvas>
+    </div>
+  </div>
+
+  <div class="tape" aria-hidden="true"><div class="tape-inner" id="tape"></div></div>
+
+  <section id="now">
+    <span class="seclabel alt">Right now</span>
+    <div class="nowcard">
+      On Amazon's speech-AI evaluation team — the people who check whether Alexa's ears
+      actually work. I build the automation that finds the bugs before users do: Pytest
+      harnesses for AWS pipelines, ASR benchmarking rigs, SQL validation, and the occasional
+      Raspberry Pi lab contraption.
+      <br><br><span style="font-family:'VT323',monospace;">this site is the trophy case for those tools. (the paint is still wet.)</span>
+    </div>
+  </section>
+
+  <section id="stats">
+    <span class="seclabel">Stat sheet · damage numbers</span>
+    <div class="stats">
+      <div class="stat"><span class="n" style="background:var(--c1); color:#fff;">8+ YRS</span>
+        <span class="l">of quality engineering, all inside speech-AI land</span></div>
+      <div class="stat"><span class="n" style="background:var(--c2);">140 → 1</span>
+        <span class="l">hours of manual metric work, automated down to about one</span></div>
+      <div class="stat"><span class="n" style="background:var(--c3);">27.87%</span>
+        <span class="l">WER improvement vs a 10% target · 2,000-utterance study</span></div>
+      <div class="stat"><span class="n" style="background:var(--c4); color:#fff;">100+</span>
+        <span class="l">test accounts swept by a single Selenium swarm</span></div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <span class="seclabel">Trophy case · legendary loot</span>
+    <div class="cards" id="cards"></div>
+  </section>
+
+  <section id="journey">
+    <span class="seclabel alt">Level select · the journey</span>
+    <div class="mapwrap">
+      <svg class="journey" viewBox="0 0 900 540" id="jsvg">
+        <path class="trail" id="jpath" d="M70,440 C150,430 235,360 315,320 C398,279 418,192 500,152 C582,112 642,208 690,252 C738,296 800,382 840,420"/>
+        <g id="jstops"></g>
+      </svg>
+      <p class="mapfoot">* one company, eight years, five boss fights. the map just likes drama.</p>
+    </div>
+    <div class="questlog">
+      <div class="qentry">
+        <span class="qyear" style="background:var(--c1);">2017</span>
+        <p><b>the 140-hour problem.</b> watched the team collectively burn 140 hours prepping
+        smart-speaker test data before a single metric could be computed. built the first
+        end-to-end data processing pipeline. the manual clicking retired with full honors.</p>
+      </div>
+      <div class="qentry">
+        <span class="qyear" style="background:var(--c4);">2018–22</span>
+        <p><b>alexa vs. the world.</b> kept building automation and led evaluation of alexa's
+        speech &amp; speaker recognition against every competitor device that showed up.
+        the lab had more smart speakers than an electronics store.</p>
+      </div>
+      <div class="qentry">
+        <span class="qyear" style="background:var(--c6); color:var(--ink);">2023</span>
+        <p><b>enter the audio LLMs.</b> took over evaluation of amazon's sonic audio LLM and
+        its competitors. the models learned to talk — somebody had to keep the scorecards honest.</p>
+      </div>
+      <div class="qentry">
+        <span class="qyear" style="background:var(--c3); color:var(--ink);">2024</span>
+        <p><b>the 3-minute miracle.</b> built scalable AWS services to run those models across
+        industry-standard benchmarks. hundreds of hours of manual execution collapsed into a
+        single 3-minute run — roughly the length of one very tense coffee.</p>
+      </div>
+      <div class="qentry">
+        <span class="qyear" style="background:#fff; color:var(--ink); border-style:dashed;">NEXT</span>
+        <p><b>level locked.</b> the map refuses to say. something is being built behind that curtain.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="loadout">
+    <span class="seclabel alt">The loadout · skills</span>
+    <div class="loadout">
+      <div class="loadgroup"><h3>Test automation</h3>
+        <div class="skillrow"><span class="skill">Python</span><span class="skill">Pytest</span><span class="skill">Selenium WebDriver</span><span class="skill">API / REST</span><span class="skill">Integration</span><span class="skill">Regression</span><span class="skill">CI/CD validation</span></div></div>
+      <div class="loadgroup"><h3>AWS &amp; workflows</h3>
+        <div class="skillrow"><span class="skill">Lambda</span><span class="skill">Step Functions</span><span class="skill">S3</span><span class="skill">SQS</span><span class="skill">DynamoDB</span><span class="skill">SES</span><span class="skill">CloudWatch</span><span class="skill">API Gateway</span><span class="skill">CloudFormation</span></div></div>
+      <div class="loadgroup"><h3>Data &amp; SQL</h3>
+        <div class="skillrow"><span class="skill">SQL</span><span class="skill">Window functions</span><span class="skill">Redshift</span><span class="skill">Pandas</span><span class="skill">NumPy</span><span class="skill">PyArrow</span><span class="skill">PySpark</span><span class="skill">EMR</span><span class="skill">Airflow</span><span class="skill">Apache Hudi</span></div></div>
+      <div class="loadgroup"><h3>AI evaluation</h3>
+        <div class="skillrow"><span class="skill">ASR</span><span class="skill">WER / CER</span><span class="skill">Model benchmarking</span><span class="skill">Forced alignment</span><span class="skill">Bootstrap CIs</span></div></div>
+      <div class="loadgroup"><h3>AI-assisted dev</h3>
+        <div class="skillrow"><span class="skill">Codex</span><span class="skill">Amazon Q</span><span class="skill">Kiro</span><span class="skill">Claude</span><span class="skill">Test generation</span><span class="skill">Code review</span></div></div>
+      <div class="loadgroup"><h3>Lab &amp; misc</h3>
+        <div class="skillrow"><span class="skill">Raspberry Pi</span><span class="skill">Flask</span><span class="skill">ADB</span><span class="skill">OpenCV</span><span class="skill">Git</span><span class="skill">Jira</span><span class="skill">Confluence</span></div></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <span class="seclabel">Final level · contact</span>
+    <div class="contactcard">
+      <h2 class="pitch">need someone who turns<br>140-hour problems into 3-minute runs?</h2>
+      <p class="pitchsub">(or just want to argue about WER methodologies — both welcome.)</p>
+      <div class="emailrow">
+        <a class="emailbtn" id="maillink" href="mailto:talkto@vivekadithya.com">talkto@vivekadithya.com</a>
+        <button class="btn secondary" id="copymail">COPY IT</button>
+      </div>
+      <div class="socialrow">
+        <a class="skill" href="#">GITHUB ↗</a>
+        <a class="skill" href="#">LINKEDIN ↗</a>
+      </div>
+      <p class="responsetime">avg. response time: faster than a 3-minute benchmark run.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footinner">
+    <div class="dialbox">
+      <label for="chaos">CHAOS DIAL — calm ↔ monkey mode</label>
+      <div class="dialrow">
+        <input type="range" id="chaos" min="0" max="11" value="5">
+        <span class="dialval" id="chaosval">5/11</span>
+      </div>
+    </div>
+    <p class="footnote">
+      every visit rolls a new palette, pattern &amp; greeting — seeded, so a roll can be shared.
+      <span class="tinyhint">hint: 0 pauses the wiggles. 11 is a mistake. click anywhere in the hero to splat paint.</span>
+    </p>
+  </div>
+</footer>
+
+<script>
+/* ---------- seeded randomness ---------- */
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+
+const PALETTES=[
+  {name:'BANANA SPLIT', bg:'#FFF7E6', ink:'#141312', c:['#FF6B6B','#FFD93D','#6BCB77','#4D96FF','#FF9F45','#C084FC']},
+  {name:'CANDY RAVERS', bg:'#FFF1F5', ink:'#1B1023', c:['#FF5D8F','#FF9F1C','#2EC4B6','#5D9CEC','#B28DFF','#FFD166']},
+  {name:'SLIME MORNING', bg:'#F1FFF4', ink:'#0F1F14', c:['#51CF6E','#FFD43B','#FF8787','#4DABF7','#FFA94D','#DA77F2']},
+  {name:'GRAPE SODA', bg:'#F6F2FF', ink:'#191233', c:['#9775FA','#FF6B6B','#38D9A9','#FFD43B','#4DABF7','#FF922B']},
+  {name:'TANGERINE DREAM', bg:'#FFF6EC', ink:'#241606', c:['#FF9F45','#FF5D5D','#3BC9DB','#A9E34B','#E599F7','#FFD93D']},
+];
+const PATTERNS=['checkers','dots','stripes','grid','plain'];
+const isBirthday = (new Date().getMonth()===9 && new Date().getDate()===20)
+                   || new URLSearchParams(location.search).has('birthday');
+const BDAY_GREET=[
+  "it's my birthday — cake first, QA after.",
+  'birthday mode: engaged. the confetti is a feature.',
+  'one year more legendary.',
+  'party hat: equipped.',
+];
+const GREETINGS=[
+  'you rolled a fresh coat of paint!','day 1,042 of the paint being wet.',
+  'certified fresh chaos, just for you.','hand-cranked randomness, no AI was harmed.',
+  'no template was harmed in the making of this site.','rolled by fair dice, promise.',
+  'sticker economy is booming.','this greeting could have been an email.',
+  'wet paint · wet paint · wet paint','your cursor looks great today.',
+  'insert coin to continue… actually, just scroll.','palette served à la mode.',
+];
+
+/* ---------- pixel sprite — full body: windswept hair, glasses, big smile, beard ---------- */
+const SPRITE=[
+"........hHHHHHHh........",
+".......HHHHHHHHHH.......",
+"......HHHHHHHHHHHH......",
+"......hHHHHHHHHHHh......",
+".....HHHHHHHHHHHHHH.....",
+".....HHSSSSSSSSSSHH.....",
+".....HSSSSSSSSSSSSH.....",
+".....SSSSSSSSSSSSSS.....",
+".....SGGGGGGGGGGGGS.....",
+".....SGWBWWGGWWBWGS.....",
+".....SGGGGGGGGGGGGS.....",
+".....SSSSSSssSSSSSS.....",
+".....SSSSSSssSSSSSS.....",
+".....SBBBWWWWWWBBBS.....",
+".....SBLLLLLLLLLLBS.....",
+".....BBBBBBBBBBBBBB.....",
+"......BBBBBBBBBBBB......",
+".......BBBBBBBBBB.......",
+".........ssssss.........",
+"....TTTTTssssssTTTTT....",
+"..TTTTTTTTTTTTTTTTTTTT..",
+"..TTTTTTTTTTTTTTTTTTTT..",
+"..TTTTTTTTTTTTTTTTTTTT..",
+"..TTTTTTTTTTTTTTTTTTTT..",
+"..SSSJJJJJJJJJJJJJJSSS..",
+"....JJJJJJJJJJJJJJJJ....",
+".....JJJJJJ..JJJJJJ.....",
+".....JJJJJ....JJJJJ.....",
+".....JJJJJ....JJJJJ.....",
+"....kkkkkk....kkkkkk....",
+"....GGGGGG....GGGGGG...."];
+const COLS={H:'#1F1B18',h:'#40352C',S:'#C58A5F',s:'#A06A45',W:'#E9F2F8',G:'#141414',
+            B:'#241C15',L:'#8A5640',J:'#2E2A72',k:'#F4F6F8'};
+const HAT=[
+".....PP....",
+".....cc....",
+"....CccC...",
+"....cCCc...",
+"...CcCCcC..",
+"...cCCcCc..",
+"..CcCCcCcC.",
+"..cCcCcCcC."];
+function drawSprite(p, birthday){
+  const cv=document.getElementById('sprite'), ctx=cv.getContext('2d');
+  const yOff = birthday ? 5 : 0;
+  cv.height = 31 + yOff;
+  ctx.clearRect(0,0,cv.width,cv.height);
+  SPRITE.forEach((row,y)=>{[...row].forEach((ch,x)=>{
+    if(ch==='.')return;
+    ctx.fillStyle = ch==='T' ? p.c[0] : COLS[ch];
+    ctx.fillRect(x, y+yOff, 1, 1);
+  })});
+  if(birthday){
+    const HATCOLS={P:p.c[0], C:p.c[2], c:p.c[1]};
+    HAT.forEach((row,y)=>{[...row].forEach((ch,x)=>{
+      if(ch==='.')return;
+      ctx.fillStyle=HATCOLS[ch];
+      ctx.fillRect(x+7, y, 1, 1);
+    })});
+  }
+}
+
+/* ---------- roll system ---------- */
+let seed;
+function applyRoll(s, opts={}){
+  const rng=mulberry32(s);
+  const p=PALETTES[Math.floor(rng()*PALETTES.length)];
+  const pat=PATTERNS[Math.floor(rng()*PATTERNS.length)];
+  const greet=opts.quiet ? 'rolling…' : GREETINGS[Math.floor(rng()*GREETINGS.length)];
+  const r=document.documentElement.style;
+  p.c.forEach((hex,i)=>r.setProperty('--c'+(i+1),hex));
+  r.setProperty('--bg',p.bg); r.setProperty('--ink',p.ink);
+  document.body.dataset.pattern=pat;
+  document.getElementById('greet').textContent=greet;
+  document.getElementById('rollchip').textContent=
+    `roll #${s} · ${p.name} · ${pat}`;
+  drawSprite(p, isBirthday);
+  return p;
+}
+
+function confetti(n=90,x=innerWidth/2,y=innerHeight*0.32){
+  const cs=getComputedStyle(document.documentElement);
+  const pal=[1,2,3,4,5,6].map(i=>cs.getPropertyValue('--c'+i).trim());
+  for(let i=0;i<n;i++){
+    const el=document.createElement('i');
+    el.className='cf';
+    el.style.left=x+'px'; el.style.top=y+'px';
+    el.style.setProperty('--s',(5+Math.random()*7)+'px');
+    el.style.setProperty('--cc',pal[Math.floor(Math.random()*pal.length)]);
+    el.style.setProperty('--dx',(Math.random()*440-220)+'px');
+    el.style.setProperty('--dy',(240+Math.random()*520)+'px');
+    el.style.setProperty('--rr',(Math.random()*720-360)+'deg');
+    el.style.setProperty('--d',(0.9+Math.random()*0.8)+'s');
+    document.body.appendChild(el);
+    el.addEventListener('animationend',()=>el.remove());
+  }
+}
+
+const rollBtn=document.getElementById('rollbtn');
+rollBtn.addEventListener('click',()=>{
+  const btn=rollBtn; btn.disabled=true;
+  let steps=9;
+  const iv=setInterval(()=>{
+    const temp=PALETTES[Math.floor(Math.random()*PALETTES.length)];
+    const r=document.documentElement.style;
+    temp.c.forEach((hex,i)=>r.setProperty('--c'+(i+1),hex));
+    r.setProperty('--bg',temp.bg); r.setProperty('--ink',temp.ink);
+    if(--steps<=0){
+      clearInterval(iv);
+      seed=(Math.random()*1e9)|0;
+      history.replaceState(null,'','?roll='+seed);
+      applyRoll(seed);
+      confetti();
+      if(isBirthday) setBirthdayMood();
+      btn.disabled=false;
+    }
+  },70);
+});
+
+/* ---------- hero name letters ---------- */
+const NAME=['VIVEK','ADITHYA'];
+const h1=document.getElementById('bigname');
+let li=0;
+NAME.forEach((word,wi)=>{
+  const line=document.createElement('div');
+  [...word].forEach(ch=>{
+    const s=document.createElement('span');
+    s.className='hl'; s.textContent=ch;
+    s.style.color=`var(--c${(li%6)+1})`;
+    s.style.animationDelay=(-li*0.13)+'s';
+    line.appendChild(s); li++;
+  });
+  h1.appendChild(line);
+});
+
+/* ---------- tape ---------- */
+const tapeMsg=(isBirthday?'★ HAPPY BIRTHDAY TO ME ★ ':'')+
+  '★ THE PAINT IS STILL WET ★ 140 HRS → 1 HR ★ 27.87% WER ★ 100+ ACCOUNTS, ZERO CLICKS ★ ROLL AGAIN ★ VIVEKADITHYA.COM ';
+document.getElementById('tape').innerHTML=Array(4).fill(`<span>${tapeMsg}</span>`).join('');
+
+/* ---------- birthday mode ---------- */
+let bdConfettiOn=false;
+function setBirthdayMood(){
+  document.getElementById('greet').textContent=
+    BDAY_GREET[Math.floor(Math.random()*BDAY_GREET.length)];
+  const chip=document.getElementById('rollchip');
+  if(!chip.textContent.includes('BIRTHDAY')) chip.textContent+=' · BIRTHDAY MODE';
+  const badge=document.querySelector('.badge');
+  if(badge) badge.innerHTML='HAPPY<br>BIRTHDAY<br>TO ME';
+  if(!bdConfettiOn && !matchMedia('(prefers-reduced-motion: reduce)').matches){
+    bdConfettiOn=true;
+    setInterval(birthdayConfetti, 320);
+  }
+}
+function birthdayConfetti(){
+  if(document.querySelectorAll('.bcf').length>50) return;
+  const cs=getComputedStyle(document.documentElement);
+  const pal=[1,2,3,4,5,6].map(i=>cs.getPropertyValue('--c'+i).trim());
+  for(let i=0;i<3;i++){
+    const el=document.createElement('i');
+    el.className='bcf';
+    el.style.left=(Math.random()*100)+'vw';
+    el.style.setProperty('--s',(5+Math.random()*7)+'px');
+    el.style.setProperty('--cc',pal[Math.floor(Math.random()*pal.length)]);
+    el.style.setProperty('--dx',(Math.random()*160-80)+'px');
+    el.style.setProperty('--rr',(Math.random()*720-360)+'deg');
+    el.style.setProperty('--d',(4+Math.random()*3.5)+'s');
+    document.body.appendChild(el);
+    el.addEventListener('animationend',()=>el.remove());
+  }
+}
+
+/* ---------- project cards ---------- */
+const PROJECTS=[
+  {num:'№ 01',name:'140 → 1',tag:'THE BIG AUTOMATE',doodle:'dbar',
+   desc:'Reusable evaluation automation for speech-model benchmarking — collapsed ~140 hours of manual metric generation and validation into about one. Orchestration, queueing, state tracking, consolidated results, notifications: the whole pipe.',
+   tech:['PYTEST','LAMBDA','STEP FNS','DYNAMODB','SES']},
+  {num:'№ 02',name:'THE GAUNTLET',tag:'2,000 UTTERANCES',doodle:'dstar',
+   desc:'An ASR + device validation study: 2,000 utterances, four device positions, three noise conditions. Measured a 27.87% WER improvement against a 10% acceptance target — and helped green-light the release.',
+   tech:['ASR','WER / CER','TEST PLANS','SQL']},
+  {num:'№ 03',name:'AUDIO DETECTIVE',tag:'THE WHODUNNIT',doodle:'dring',
+   desc:'Chased a spooky WER regression through error patterns until the trail ended at an endpoint truncating audio. Verdict: device defect — the speech model walked free.',
+   tech:['ROOT-CAUSE','CLOUDWATCH','DATA FORENSICS']},
+  {num:'№ 04',name:'SELENIUM SWARM',tag:'100 ACCOUNTS, 0 CLICKS',doodle:'dstar',
+   desc:'Browser automation for a data-acquisition workflow spanning 100+ test accounts. Two days of repetitive clicking deleted from every single evaluation cycle.',
+   tech:['SELENIUM','PYTHON','CI/CD']},
+  {num:'№ 05',name:'LAB PIXIE',tag:'HARDWARE GREASE',doodle:'dbar',
+   desc:'A Raspberry Pi + Flask rig to drive lab devices over ADB — device selection, control, and simultaneous multi-device audio capture. No babysitting required.',
+   tech:['RASPBERRY PI','FLASK','ADB','OPENCV']},
+  {num:'№ 06',name:'POLYGLOT PIPES',tag:'MULTILINGUAL DATA',doodle:'dring',
+   desc:'Multilingual data-processing workflows on Airflow, PySpark, EMR and Apache Hudi — reshaping formats across languages and validating every dataset that comes out the other end.',
+   tech:['AIRFLOW','PYSPARK','EMR','HUDI']},
+];
+const cardsEl=document.getElementById('cards');
+PROJECTS.forEach((p,i)=>{
+  const c=document.createElement('div');
+  c.className='card';
+  c.setAttribute('role','button');
+  c.tabIndex=0;
+  c.setAttribute('aria-pressed','false');
+  c.innerHTML=`
+    <div class="card-inner">
+      <div class="face front">
+        <span class="num">${p.num}</span>
+        <span class="name">${p.name}</span>
+        <span class="tag">${p.tag}</span>
+        <div class="doodle"><div class="${p.doodle}"></div></div>
+        <span class="flipcue">FLIP ME →</span>
+      </div>
+      <div class="face back">
+        <span class="num">${p.num}</span>
+        <span class="name">${p.name}</span>
+        <p>${p.desc}</p>
+        <div class="chips">${p.tech.map(t=>`<b>${t}</b>`).join('')}</div>
+        <div class="barcode"></div>
+      </div>
+    </div>`;
+  const flip=()=>{
+    c.classList.toggle('go');
+    c.setAttribute('aria-pressed', c.classList.contains('go'));
+  };
+  c.addEventListener('click',flip);
+  c.addEventListener('keydown',e=>{
+    if(e.key==='Enter'||e.key===' '){ e.preventDefault(); flip(); }
+  });
+  cardsEl.appendChild(c);
+});
+
+/* ---------- journey map ---------- */
+const STOPS=[
+  {x:70, y:440, l:'2017 · FIRST PIPELINE'},
+  {x:315,y:320, l:'2018–22 · ALEXA VS THE WORLD'},
+  {x:500,y:152, l:'2023 · AUDIO LLMS'},
+  {x:690,y:252, l:'2024 · 3-MIN RUNS'},
+  {x:840,y:420, l:'NEXT · ???'},
+];
+const jg=document.getElementById('jstops');
+STOPS.forEach((s,i)=>{
+  const g=document.createElementNS('http://www.w3.org/2000/svg','g');
+  g.setAttribute('class','stop');
+  const above=i%2===0;
+  const locked = i===STOPS.length-1;
+  const anchor = i===0 ? 'start' : (locked ? 'end' : 'middle');
+  g.innerHTML=`
+    <circle class="pulse" cx="${s.x}" cy="${s.y}" r="12" style="animation-delay:${-i*0.6}s"/>
+    <circle class="dot" cx="${s.x}" cy="${s.y}" r="13" fill="${locked ? '#b3a89a' : `var(--c${(i%6)+1})`}"/>
+    <text x="${s.x}" y="${above ? s.y-32 : s.y+40}" text-anchor="${anchor}">${s.l}</text>`;
+  jg.appendChild(g);
+});
+const jpath=document.getElementById('jpath');
+const L=jpath.getTotalLength();
+jpath.style.strokeDasharray=L; jpath.style.strokeDashoffset=L;
+new IntersectionObserver((es,obs)=>{es.forEach(e=>{
+  if(e.isIntersecting){ jpath.style.transition='stroke-dashoffset 1.6s ease'; jpath.style.strokeDashoffset=0; obs.disconnect(); }
+})},{threshold:.4}).observe(document.getElementById('jsvg'));
+
+/* ---------- chaos dial ---------- */
+const chaos=document.getElementById('chaos'), chaosval=document.getElementById('chaosval');
+function setChaos(v){
+  chaosval.textContent=v+'/11';
+  document.documentElement.style.setProperty('--cm',(0.4+v*0.22).toFixed(2));
+  document.body.dataset.chaos=v;
+}
+chaos.addEventListener('input',e=>setChaos(e.target.value));
+setChaos(5);
+
+/* ---------- paint splats ---------- */
+const hero=document.getElementById('hero');
+function splat(x,y){
+  const cs=getComputedStyle(document.documentElement);
+  const pal=[1,2,3,4,5,6].map(i=>cs.getPropertyValue('--c'+i).trim());
+  const el=document.createElement('div');
+  el.className='splat';
+  const w=34+Math.random()*30;
+  el.style.cssText=`left:${x-w/2}px;top:${y-w/2}px;width:${w}px;height:${w*0.8}px;background:${pal[Math.floor(Math.random()*pal.length)]}`;
+  el.innerHTML=`<i style="left:22%;animation-delay:0s"></i><i style="left:60%;animation-delay:.3s"></i>`;
+  hero.appendChild(el);
+  setTimeout(()=>el.remove(),3200);
+}
+hero.addEventListener('pointerdown',e=>{
+  if(e.target.closest('button,a'))return;
+  const r=hero.getBoundingClientRect();
+  splat(e.clientX-r.left, e.clientY-r.top);
+});
+document.getElementById('paintbtn').addEventListener('click',()=>{
+  const r=hero.getBoundingClientRect();
+  for(let i=0;i<6;i++) setTimeout(()=>splat(r.left-r.left+Math.random()*r.width, r.top-r.top+Math.random()*r.height*0.8),i*130);
+});
+
+/* ---------- contact: copy email ---------- */
+document.getElementById('copymail').addEventListener('click',async e=>{
+  const mail=document.getElementById('maillink').textContent.trim();
+  let ok=false;
+  try{ await navigator.clipboard.writeText(mail); ok=true; }
+  catch(err){
+    const ta=document.createElement('textarea');
+    ta.value=mail; document.body.appendChild(ta); ta.select();
+    try{ ok=document.execCommand('copy'); }catch(_){}
+    ta.remove();
+  }
+  const t=document.createElement('div');
+  t.className='toast';
+  t.textContent = ok ? 'copied! go make my inbox happy.' : 'couldn\u2019t copy — select it like it\u2019s 2007.';
+  document.body.appendChild(t);
+  setTimeout(()=>t.remove(),2000);
+  if(ok) confetti(50, e.clientX, e.clientY);
+});
+
+/* ---------- boot ---------- */
+const qp=new URLSearchParams(location.search).get('roll');
+seed = qp ? (parseInt(qp,10)||1) : (Math.random()*1e9)|0;
+if(qp) history.replaceState(null,'','?roll='+seed);
+applyRoll(seed);
+if(isBirthday) setBirthdayMood();
+console.log('%c vivekadithya.com '+'\n you found the secret console. this is where the real easter eggs live. ',
+  'background:#FFD93D;color:#141312;padding:6px 10px;border-radius:6px;font-weight:bold');
+</script>
+</body>
+</html>
