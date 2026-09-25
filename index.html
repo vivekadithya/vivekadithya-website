@@ -44,7 +44,7 @@
 
   /* ---------- HERO ---------- */
   .hero{
-    position:relative; overflow:hidden;
+    position:relative;
     display:grid; grid-template-columns:1.25fr .75fr; gap:2rem; align-items:center;
     max-width:1100px; margin:0 auto; padding:4.5rem 1.5rem 3rem;
   }
@@ -101,6 +101,7 @@
     opacity:0; transition:opacity .15s; pointer-events:none; rotate:-2deg; z-index:5;
   }
   .artifact:hover .cap{opacity:1;}
+  .artifact.r-edge .cap{left:auto; right:0; translate:0 0;}
   .badge{
     position:absolute; right:0; top:8%; rotate:8deg;
     font-family:'Press Start 2P',monospace; font-size:.55rem; line-height:1.6;
@@ -358,10 +359,10 @@
     </div>
     <div class="heroart" aria-hidden="true">
       <div class="artifact" id="art-cricket" style="left:16%; top:0; animation-delay:-4.2s;"></div>
-      <div class="artifact" id="art-skate" style="right:0; top:40%; animation-delay:-2.1s;"></div>
+      <div class="artifact r-edge" id="art-skate" style="right:0; top:40%; animation-delay:-2.1s;"></div>
       <div class="artifact" id="art-coffee" style="left:1%; top:38%; animation-delay:-.6s;"></div>
       <div class="artifact" id="art-dosa" style="left:0; bottom:3%; animation-delay:-3.4s;"></div>
-      <div class="artifact" id="art-treb" style="right:2%; bottom:2%; animation-delay:-1.3s;"></div>
+      <div class="artifact r-edge" id="art-aoe" style="right:2%; bottom:2%; animation-delay:-1.3s;"></div>
       <div class="badge">EST.<br>STILL<br>COOKING</div>
       <canvas id="sprite" width="24" height="31"></canvas>
     </div>
@@ -607,20 +608,22 @@ const ARTIFACTS={
    "GgGGGGGGGGWWRR",
    ".GGGGGGGGG..RR",
   ],col:{D:'#E8A33D',d:'#F6C464',G:'#3E8E4E',g:'#2F6E3C',W:'#F4EFE4',R:'#E8602C'}},
- 'art-treb':{w:58,cap:'age of empires · wololo',map:[
-   ".a............",
-   ".a............",
-   ".a............",
-   ".a........BB..",
-   "..a.......BB..",
-   "..a.......BB..",
-   "...a......BB..",
-   "....a.........",
-   "....AA.AA.....",
-   "...AA...AA....",
-   "..SAA...AA....",
-   "..AA.....AA...",
-  ],col:{a:'#7A4E2B',A:'#9A6B3F',B:'#6B7280',S:'#9CA3AF'}},
+ 'art-aoe':{w:54,cap:'age of empires · wololo',map:[
+   ".....RR.RR......",
+   ".....RRRRRR.....",
+   "RR.R.RRRRRR.RR.R",
+   "RRRR.RRRRRR.RRRR",
+   "RRRR.RRRRRR.RRRR",
+   "RRRR.RRDDRR.RRRR",
+   "RRRR.RRDDRR.RRRR",
+   "RRRR.RRRRRR.RRRR",
+   "RRRR.RRRRRR.RRRR",
+   "RRRR.RRRRRR.RRRR",
+   "RRRRRRRRRRRRRRRR",
+   "RRRRRRRRRRRRRRRR",
+   "rrrrrrrrrrrrrrrr",
+   "rrrrrrrrrrrrrrrr",
+  ],col:{R:'#D6472B',r:'#A83520',D:'#5A1F12'}},
  'art-cricket':{w:44,cap:'cricket · backyard test series',map:[
    "....HH......",
    "....HH......",
