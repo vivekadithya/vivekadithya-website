@@ -151,8 +151,9 @@
     background:rgba(255,255,255,.55); border:1px solid rgba(20,19,18,.15);
   }
 
-  .cards{display:grid; grid-template-columns:repeat(3,1fr); gap:2.2rem; perspective:1000px;}
-  .card{aspect-ratio:3/4.1; cursor:pointer; position:relative;}
+  .cards{display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:1.6rem; perspective:1000px;}
+  .card{grid-column:span 2; height:350px; cursor:pointer; position:relative;}
+  .card:nth-child(-n+2), .card:nth-last-child(-n+2){grid-column:span 3;}
   .card-inner{
     position:absolute; inset:0; transform-style:preserve-3d;
     transition:transform .55s cubic-bezier(.25,.8,.3,1.15);
@@ -164,23 +165,35 @@
   .face{
     position:absolute; inset:0; backface-visibility:hidden;
     border:3px solid var(--ink); border-radius:18px; box-shadow:7px 7px 0 var(--ink);
-    background:#fff; padding:1.1rem; display:flex; flex-direction:column;
+    background:#fff; padding:1.15rem; display:flex; flex-direction:column; overflow:hidden;
   }
   .face.back{transform:rotateY(180deg); background:var(--c6);}
   .face .num{font-family:'Press Start 2P',monospace; font-size:.7rem; opacity:.75;}
-  .face .name{font-weight:700; font-size:1.7rem; line-height:1.05; margin-top:.6rem;}
-  .face .tag{font-family:'VT323',monospace; font-size:1.15rem; margin-top:.3rem; letter-spacing:.06em;}
-  .face .doodle{flex:1; display:grid; place-items:center;}
+  .face .name{font-weight:700; font-size:1.5rem; line-height:1.05; margin-top:.75rem;}
+  .face.front .name{max-width:calc(100% - 48px);}
+  .mini-doodle{position:absolute; top:1.1rem; right:1rem; width:38px; height:38px;
+    display:grid; place-items:center; overflow:hidden;}
+  .mini-doodle>div{flex:none; transform:scale(.46);}
+  .outcome{margin-top:1.25rem; display:flex; flex-direction:column; align-items:flex-start; gap:.35rem;}
+  .outcome strong{font-size:clamp(1.8rem,3vw,2.5rem); line-height:1.05; letter-spacing:-.04em;
+    background:var(--accent); border:2.5px solid var(--ink); border-radius:12px;
+    padding:.28rem .5rem; box-shadow:3px 3px 0 var(--ink);}
+  .outcome span{font-family:'VT323',monospace; font-size:1.15rem; letter-spacing:.03em; line-height:1.1;}
+  .face.front .summary{font-size:.95rem; line-height:1.34; margin-top:1rem; max-width:36ch;}
+  .frontfoot{display:flex; align-items:flex-end; justify-content:space-between; gap:.7rem; margin-top:auto;}
+  .frontfoot .chips{margin-top:0;}
+  .frontfoot .chips b{font-size:.9rem; padding:.02rem .45rem;}
   .doodle .dstar{width:74px; height:74px; background:var(--c2); border:3px solid var(--ink);
     clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);}
   .doodle .dring{width:70px; height:70px; border-radius:50%; border:12px solid var(--c4);}
   .doodle .dbar{width:70px; height:70px; border:3px solid var(--ink); border-radius:14px;
     background:repeating-linear-gradient(45deg, var(--c3) 0 10px, #fff 10px 20px);}
-  .flipcue{
-    align-self:flex-start; font-family:'VT323',monospace; font-size:1rem;
-    background:var(--ink); color:var(--bg); border-radius:8px; padding:.1rem .6rem;
-  }
-  .face.back p{font-size:.98rem; line-height:1.45; margin-top:.6rem;}
+  .flipcue{flex:none; font-family:'VT323',monospace; font-size:1rem;
+    background:var(--ink); color:var(--bg); border-radius:8px; padding:.1rem .6rem;}
+  .story{display:grid; gap:.5rem; margin-top:.9rem;}
+  .story p{font-size:.88rem; line-height:1.3;}
+  .story b{font-family:'VT323',monospace; font-size:1.05rem; letter-spacing:.08em; display:block;}
+  .face.back .chips{margin-top:auto;}
   .chips{display:flex; flex-wrap:wrap; gap:.45rem; margin-top:auto;}
   .chips b{
     font-family:'VT323',monospace; font-weight:400; font-size:1rem; letter-spacing:.05em;
@@ -323,13 +336,16 @@
     .hero{grid-template-columns:1fr; padding-top:3rem;}
     .heroart{height:300px;}
     .artifact{scale:.85;}
-    .cards{grid-template-columns:1fr 1fr; gap:1.4rem;}
-    .card{aspect-ratio:3/4;}
+    .cards{grid-template-columns:repeat(2,minmax(0,1fr)); gap:1.4rem;}
+    .card,.card:nth-child(-n+2),.card:nth-last-child(-n+2){grid-column:span 1;}
+    .card:last-child{grid-column:1/-1;}
     .stats{grid-template-columns:repeat(2,1fr);}
   }
   @media (max-width:540px){
     .cards{grid-template-columns:1fr; }
-    .face .name{font-size:1.5rem;}
+    .card:last-child{grid-column:auto;}
+    .face .name{font-size:1.4rem;}
+    .frontfoot .chips b{font-size:.8rem;}
   }
   @media (prefers-reduced-motion: reduce){
     *,*::before,*::after{animation-duration:.001s !important; animation-iteration-count:1 !important; transition-duration:.001s !important;}
@@ -429,9 +445,9 @@
       </div>
       <div class="qentry">
         <span class="qyear" style="background:var(--c3); color:var(--ink);">2024</span>
-        <p><b>the 3-minute miracle.</b> built scalable AWS services to run those models across
-        industry-standard benchmarks. hundreds of hours of manual execution collapsed into a
-        single 3-minute run — roughly the length of one very tense coffee.</p>
+        <p><b>the 3-minute kickoff.</b> built AWS orchestration to start a 100-dataset benchmark
+        in about 3 minutes instead of roughly 300 minutes of sequential starts.
+        the model runs carry on after kickoff — enough time for a less tense coffee.</p>
       </div>
       <div class="qentry">
         <span class="qyear" style="background:#fff; color:var(--ink); border-style:dashed;">NEXT</span>
@@ -461,7 +477,7 @@
   <section id="contact">
     <span class="seclabel">Final level · contact</span>
     <div class="contactcard">
-      <h2 class="pitch">need someone who turns<br>140-hour problems into 3-minute runs?</h2>
+      <h2 class="pitch">140 collective hours → about one.<br>100-dataset kickoff: 300 minutes → about three.</h2>
       <p class="pitchsub">(or just want to argue about WER methodologies — both welcome.)</p>
       <div class="emailrow">
         <a class="emailbtn" id="maillink" href="mailto:talkto@vivekadithya.com">talkto@vivekadithya.com</a>
@@ -792,52 +808,95 @@ function birthdayConfetti(){
 
 /* ---------- project cards ---------- */
 const PROJECTS=[
-  {num:'№ 01',name:'140 → 1',tag:'THE BIG AUTOMATE',doodle:'dbar',
-   desc:'Reusable evaluation automation for speech-model benchmarking — collapsed ~140 hours of manual metric generation and validation into about one. Orchestration, queueing, state tracking, consolidated results, notifications: the whole pipe.',
-   tech:['PYTEST','LAMBDA','STEP FNS','DYNAMODB','SES']},
-  {num:'№ 02',name:'THE GAUNTLET',tag:'2,000 UTTERANCES',doodle:'dstar',
-   desc:'An ASR + device validation study: 2,000 utterances, four device positions, three noise conditions. Measured a 27.87% WER improvement against a 10% acceptance target — and helped green-light the release.',
-   tech:['ASR','WER / CER','TEST PLANS','SQL']},
-  {num:'№ 03',name:'AUDIO DETECTIVE',tag:'THE WHODUNNIT',doodle:'dring',
-   desc:'Chased a spooky WER regression through error patterns until the trail ended at an endpoint truncating audio. Verdict: device defect — the speech model walked free.',
-   tech:['ROOT-CAUSE','CLOUDWATCH','DATA FORENSICS']},
-  {num:'№ 04',name:'SELENIUM SWARM',tag:'100 ACCOUNTS, 0 CLICKS',doodle:'dstar',
-   desc:'Browser automation for a data-acquisition workflow spanning 100+ test accounts. Two days of repetitive clicking deleted from every single evaluation cycle.',
-   tech:['SELENIUM','PYTHON','CI/CD']},
-  {num:'№ 05',name:'LAB PIXIE',tag:'HARDWARE GREASE',doodle:'dbar',
-   desc:'A Raspberry Pi + Flask rig to drive lab devices over ADB — device selection, control, and simultaneous multi-device audio capture. No babysitting required.',
-   tech:['RASPBERRY PI','FLASK','ADB','OPENCV']},
-  {num:'№ 06',name:'POLYGLOT PIPES',tag:'MULTILINGUAL DATA',doodle:'dring',
-   desc:'Multilingual data-processing workflows on Airflow, PySpark, EMR and Apache Hudi — reshaping formats across languages and validating every dataset that comes out the other end.',
-   tech:['AIRFLOW','PYSPARK','EMR','HUDI']},
+  {num:'№ 01',name:'THE BIG AUTOMATE',category:'EVALUATION METRICS',doodle:'dbar',
+   metric:'140 → ~1',metricLabel:'collective human hours → ~1 hour',
+   summary:'Automated metric generation and validation for speech-model evaluations.',
+   problem:'Metric preparation and validation consumed about 140 collective human hours.',
+   built:'A reusable Python workflow to generate evaluation metrics and check results.',
+   result:'Reduced the manual effort to about one hour — roughly 139 hours saved.',
+   tech:['PYTHON','METRICS','VALIDATION']},
+  {num:'№ 02',name:'BATCH COMMANDER',category:'BENCHMARK ORCHESTRATION',doodle:'dstar',
+   metric:'~99% FASTER',metricLabel:'100-dataset kickoff · ~300 → ~3 min',
+   summary:'Starts a full benchmark batch in minutes instead of sequential starts.',
+   problem:'Starting 100 dataset runs one by one took roughly 300 minutes.',
+   built:'An AWS orchestration layer to dispatch child jobs, track state, and rerun failures.',
+   result:'Started all 100 runs in about 3 minutes. Model execution continues after kickoff.',
+   tech:['LAMBDA','SQS','DYNAMODB']},
+  {num:'№ 03',name:'THE GAUNTLET',category:'DEVICE VALIDATION',doodle:'dstar',
+   metric:'27.87%',metricLabel:'WER improvement measured · 10% target',
+   summary:'Validated ASR and device quality across 2,000 utterances.',
+   problem:'The release needed measured speech performance across device positions and noise.',
+   built:'An ASR validation study with 2,000 utterances, four positions, and three noise conditions.',
+   result:'Measured 27.87% WER improvement against a 10% acceptance target.',
+   tech:['ASR','WER / CER','SQL']},
+  {num:'№ 04',name:'AUDIO DETECTIVE',category:'ROOT CAUSE',doodle:'dring',
+   metric:'CASE CLOSED',metricLabel:'clipped audio, not a model regression',
+   summary:'Traced elevated WER to an endpoint that truncated recordings.',
+   problem:'A WER regression appeared to implicate the speech model.',
+   built:'Investigated high-error utterances, device recordings, and endpoint behavior.',
+   result:'Isolated the device defect so the model was not blamed for clipped audio.',
+   tech:['WER','CLOUDWATCH','DIAGNOSIS']},
+  {num:'№ 05',name:'SELENIUM SWARM',category:'BROWSER AUTOMATION',doodle:'dstar',
+   metric:'100+ ACCOUNTS',metricLabel:'2+ days of repetitive work eliminated',
+   summary:'Automated data exports across a large fleet of test accounts.',
+   problem:'Evaluation cycles required repetitive data acquisition across 100+ accounts.',
+   built:'A Selenium and Lambda workflow to collect the exports automatically.',
+   result:'Removed more than two days of manual clicking from the workflow.',
+   tech:['SELENIUM','PYTHON','LAMBDA']},
+  {num:'№ 06',name:'LAB PIXIE',category:'HARDWARE AUTOMATION',doodle:'dbar',
+   metric:'MULTI-DEVICE',metricLabel:'one rig, simultaneous audio capture',
+   summary:'Controlled lab devices and captured audio with a Raspberry Pi rig.',
+   problem:'Device selection, control, and recordings took hands-on lab time.',
+   built:'A Raspberry Pi and Flask interface using ADB to drive multiple devices.',
+   result:'Enabled simultaneous multi-device audio capture with less babysitting.',
+   tech:['RASPBERRY PI','FLASK','ADB']},
+  {num:'№ 07',name:'POLYGLOT PIPES',category:'DATA VALIDATION',doodle:'dring',
+   metric:'MULTILINGUAL',metricLabel:'data pipelines and validation',
+   summary:'Processed and checked speech datasets across languages and formats.',
+   problem:'Multilingual datasets arrived in different formats and needed reliable validation.',
+   built:'Configured Airflow, PySpark, EMR, and Hudi workflows for data preparation.',
+   result:'Validated outputs before the datasets entered downstream evaluations.',
+   tech:['AIRFLOW','PYSPARK','HUDI']},
 ];
 const cardsEl=document.getElementById('cards');
 PROJECTS.forEach((p,i)=>{
   const c=document.createElement('div');
   c.className='card';
+  c.style.setProperty('--accent',`var(--c${(i%6)+1})`);
   c.setAttribute('role','button');
   c.tabIndex=0;
   c.setAttribute('aria-pressed','false');
+  c.setAttribute('aria-label',`${p.name}: ${p.metric}. ${p.summary} Flip for the story.`);
   c.innerHTML=`
     <div class="card-inner">
       <div class="face front">
-        <span class="num">${p.num}</span>
+        <span class="num">${p.num} · ${p.category}</span>
         <span class="name">${p.name}</span>
-        <span class="tag">${p.tag}</span>
-        <div class="doodle"><div class="${p.doodle}"></div></div>
-        <span class="flipcue">FLIP ME →</span>
+        <div class="mini-doodle" aria-hidden="true"><div class="${p.doodle}"></div></div>
+        <div class="outcome"><strong>${p.metric}</strong><span>${p.metricLabel}</span></div>
+        <p class="summary">${p.summary}</p>
+        <div class="frontfoot">
+          <div class="chips">${p.tech.slice(0,2).map(t=>`<b>${t}</b>`).join('')}</div>
+          <span class="flipcue">STORY ↗</span>
+        </div>
       </div>
       <div class="face back">
-        <span class="num">${p.num}</span>
+        <span class="num">THE STORY · ${p.num}</span>
         <span class="name">${p.name}</span>
-        <p>${p.desc}</p>
+        <div class="story">
+          <p><b>THE PROBLEM</b>${p.problem}</p>
+          <p><b>WHAT I BUILT</b>${p.built}</p>
+          <p><b>THE RESULT</b>${p.result}</p>
+        </div>
         <div class="chips">${p.tech.map(t=>`<b>${t}</b>`).join('')}</div>
-        <div class="barcode"></div>
       </div>
     </div>`;
   const flip=()=>{
     c.classList.toggle('go');
     c.setAttribute('aria-pressed', c.classList.contains('go'));
+    c.setAttribute('aria-label',c.classList.contains('go')
+      ? `${p.name}. Problem: ${p.problem} Built: ${p.built} Result: ${p.result} Flip back.`
+      : `${p.name}: ${p.metric}. ${p.summary} Flip for the story.`);
   };
   c.addEventListener('click',flip);
   c.addEventListener('keydown',e=>{
