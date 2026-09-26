@@ -420,7 +420,7 @@
     <span class="seclabel alt">Level select · the journey</span>
     <div class="mapwrap">
       <svg class="journey" viewBox="0 0 900 540" id="jsvg">
-        <path class="trail" id="jpath" d="M70,440 C150,430 235,360 315,320 C398,279 418,192 500,152 C582,112 642,208 690,252 C738,296 800,382 840,420"/>
+        <path class="trail" id="jpath" d="M70,440 C145,435 175,365 260,355 C340,345 383,255 475,255 C565,255 600,170 690,165 C750,160 785,95 840,90"/>
         <g id="jstops"></g>
       </svg>
       <p class="mapfoot">* one company, eight years, five boss fights. the map just likes drama.</p>
@@ -908,10 +908,10 @@ PROJECTS.forEach((p,i)=>{
 /* ---------- journey map ---------- */
 const STOPS=[
   {x:70, y:440, l:'2017 · FIRST PIPELINE'},
-  {x:315,y:320, l:'2018–22 · ALEXA VS THE WORLD'},
-  {x:500,y:152, l:'2023 · AUDIO LLMS'},
-  {x:690,y:252, l:'2024 · 3-MIN RUNS'},
-  {x:840,y:420, l:'NEXT · ???'},
+  {x:260,y:355, l:'2018–22 · ALEXA VS THE WORLD'},
+  {x:475,y:255, l:'2023 · AUDIO LLMS'},
+  {x:690,y:165, l:'2024 · 3-MIN KICKOFF'},
+  {x:840,y:90, l:'NEXT · ???'},
 ];
 const jg=document.getElementById('jstops');
 STOPS.forEach((s,i)=>{
