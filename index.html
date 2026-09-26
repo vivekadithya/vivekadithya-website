@@ -907,17 +907,17 @@ PROJECTS.forEach((p,i)=>{
 
 /* ---------- journey map ---------- */
 const STOPS=[
-  {x:70, y:440, l:'2017 · FIRST PIPELINE'},
-  {x:260,y:355, l:'2018–22 · ALEXA VS THE WORLD'},
-  {x:475,y:255, l:'2023 · AUDIO LLMS'},
-  {x:690,y:165, l:'2024 · 3-MIN KICKOFF'},
-  {x:840,y:90, l:'NEXT · ???'},
+  {x:70, y:440, above:false, l:'2017 · FIRST PIPELINE'},
+  {x:260,y:355, above:true, l:'2018–22 · ALEXA VS THE WORLD'},
+  {x:475,y:255, above:false, l:'2023 · AUDIO LLMS'},
+  {x:690,y:165, above:false, l:'2024 · 3-MIN KICKOFF'},
+  {x:840,y:90, above:true, l:'NEXT · ???'},
 ];
 const jg=document.getElementById('jstops');
 STOPS.forEach((s,i)=>{
   const g=document.createElementNS('http://www.w3.org/2000/svg','g');
   g.setAttribute('class','stop');
-  const above=i%2===0;
+  const above=s.above;
   const locked = i===STOPS.length-1;
   const anchor = i===0 ? 'start' : (locked ? 'end' : 'middle');
   g.innerHTML=`
